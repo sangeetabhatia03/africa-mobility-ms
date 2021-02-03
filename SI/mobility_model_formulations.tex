@@ -1,0 +1,350 @@
+\documentclass{article}
+\usepackage{markdown}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{rotating}
+\usepackage{tabularx}
+\usepackage{natbib}
+\usepackage{multirow, longtable}
+\bibliographystyle{unsrt}
+
+\begin{document}
+
+\section*{Abstract}
+
+\section*{Methods}
+
+We searched PubMED and Web of Science for peer reviewed literature 
+in English on data and models on human mobility in Africa. The search terms
+used were: ((gravity model OR radiation model) AND human and
+africa), (mobility model AND africa AND human), (gravity model AND
+africa), (radiation model AND africa and human). Of the 471 titles
+from the initial search, 129 were moved to abstract screening and 33
+full-text articles were selected for data extraction.
+
+\section*{Formulations of mobility models in the literature reviewed}
+\begin{table}
+\begin{tabular}{lllr}
+\toprule
+Reference & Model Formulation & Parameter Definitions &
+Parameter Values \\
+\midrule
+\citep{marshall2018} & 
+$P\left(j \mid i\right) \propto N_j^{\tau} k\left(d_{i, j}\right)$ &
+$P\left(j \mid i\right)$ is the probability of a trip being to a
+destination $j$ conditional upon the origin $i$. 
+$N_j$ is the population at $j$ $k$ is a function of 
+the distance between $i$ and $j$, $d_{i, j}$. &
+\\
+\multirow{2}{*}{\citep{gustafson2017}}&
+$p_{ij}$ = $\frac{C_i P_i^{\tau_1} P _j {\tau_2}}{d_{ij}^{\rho}}$ & 
+\multirow{2}{*}{$p_{ij}$ is the probability of a transmission from chiefdom $i$ to
+chiefdom $j$.  $P_i$ and $P_j$ are the populations at the origin and
+the destination respectively and $d_{ij}$ is the distance between
+them. $C_i$ normalises the probability
+distribution for each origin and is set to $C_i = 1 /
+\sum_j{P_i^{\tau_1} P _j {\tau_2} / d_{ij}^{\rho}}.$. 
+$d_{ij}$ is the distance between the origin and the destination.} &
+\\
+&
+$p_{ij} = \frac{C_i}{d_{ij}^{\rho}}$ &
+&
+\\
+\citep{tompkins2016} &
+$p_{ij} = \frac{K}{\eta} \left( 1 -
+e^{\frac{-r_{ij}}{\tau_{overnight}}}\right)\frac{m_i
+m_j}{r_{ij}^{\gamma}} $ &
+&
+\\
+\multirow{2}{*}{\citep{kraemer2017spread}} &
+$T_{i, j} = k \frac{N_i^{\alpha}N_j^{\beta}}{d_{i, j}^{\gamma}}$ &
+\multirow{2}{*}{$T_{i, j}$ is the total commuting from district $i$ to district $j$,
+$N_i{\alpha}$ is the population in the origin; $N_j{\beta}$ is the
+population in the destination; $d_{i, j}$ is the distance between
+them. $s_{i,j}$ is the population in the radius between $i$ and $j$.}
+& \\
+&
+$T_{i, j} = T_i \frac{N_iN_j}{\left(N_i + s_{i, j}\right)\left(N_i + N_j + s_{i, j}\right)}$ &
+&
+\\
+\citep{matamalas2016assessing} &
+$\tilde{N}_{\alpha}(t + 1) = \sum_{\rho = 1}^{n^{\tau}}{H_{\rho
+                                 \alpha}\tilde{N}_{\rho}(t)}$&
+For a $\tau$-memory network, each state node $\alpha$ encodes the
+information that an individual was in nodes $i_i, i_2, \dots, i_{\tau}$
+when he is currently in node $i$. Nodes $i_i, i_2, \dots, i_{\tau}$ 
+constitute a state node $\alpha$. $\tilde{N}_{\alpha}(t)$ is the
+population of the state node $\alpha$ at time $t$. $\mathbf{H}$
+encodes the matrix of probabilities of moving from $i$ to $j$ having
+been at nodes  $i_i, i_2, \dots, i_{\tau}$.
+&\\
+\citep{silal2015hitting} &
+$\frac{1}{\kappa_{i, j}} = \frac{1}{k} \times \frac{\frac{1}{\left( 1 +
+                           d_{i, j}^{lwgt} \right)}}{\sum_i{\frac{1}{1
+                           + d_{i, j}^{lwgt}}}}$
+&
+$\frac{1}{\kappa_{i, j}}$ is the rate of movement between patches
+  in a multi-patch model, $d_{i, j}$ is the
+  distance between centroids of patches $i$ and $j$ and $lwgt$ is the
+  degree of linkage between them. 
+&\\
+
+\multirow{8}{*}{\citep{kramer2016spatial}} &
+$p_{ij}$ = $\frac{1}{1 + e^{\beta_0 + \beta_1 d_{ij}}}$
+&
+\multirow{8}{*}{$p_{ij}$ is the probability of infection between a susceptible unit
+  $i$ and a source $j$, $d_{ij}$ is the distance between $i$ and $j$.
+$p_i$ and $p_j$ are the populations at $i$ and $j$ respectively.
+}
+&\\
+&
+$p_{ij}$ = $\frac{1}{1 + e^{\beta_0 + \beta_1 d^{\beta_2}_{ij}}}$
+&
+&\\
+&
+$p_{ij}$ = $\frac{1}{1 + e^{\beta_0 + \beta_1 \left( d_{ij}/p_ip_j\right)^{B_2}}}$
+&
+&\\
+&
+$p_{ij}$ = $\frac{1}{1 + e^{\beta_0 + \beta_1 \left(
+                            d_{ij}^{\beta_2}/\left(p_ip_j\right)^{\beta_3}
+                            \right)}}$
+&
+&\\
+&
+$p_{ij}$ = $1 - e^{\left(\beta_0 p_i^{\beta_1}
+                            \sum_j{\left(p_j^{\beta_2} d_{ij}^{\beta_3} \right)}\right)}$
+&
+&\\
+&
+$\lambda_i$ = $1 - e^{\left(\beta_0 p_i^{\beta_1}
+                            \sum_j{\left(p_j^{\beta_2}
+                            d_{ij}^{\beta_3} \right)/\left(\sum_{k \neq i}{p_k^{\beta_2}/d_{ik}^{\beta_3}}\right)^{\beta_4}}\right)}$
+&
+$\lambda_i$ is the normalised force of infection at 
+$i$, $d_{ij}$ is the distance between $i$ and $j$,
+$p_j$ is the population at $j$.
+&\\ 
+&
+$p_{ij} = \frac{1}{1 + e^{\beta_0 + \beta_1 d_{ij} + \beta_2 rad}}$
+&
+$p_{ij}$ is the probability of infection between a susceptible unit
+$i$ and a source $j$, $d_{ij}$ is the distance between $i$ and $j$,
+  $rad$ is the radiatation model of population flow.
+&\\ 
+&
+$p_{ij} = \frac{1}{1 + e^{\beta_0 + \beta_1 d_{ij} + \beta_2 pwo}}$
+&
+$p_{ij}$ is the probability of infection between a susceptible unit
+$i$ and a source $j$, $d_{ij}$ is the distance between $i$ and $j$,
+  $pwo$ is a population-weighted opportunities model that takes into
+  account the population distribution surrounding the destination
+  location.
+&\\ 
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+\begin{tabular}{lllr}
+\toprule
+Reference & Model Formulation & Parameter Definitions &
+Parameter Values \\
+\midrule
+\citep{mastrorillo2016influence} &
+$
+m_{i j, t}=\kappa \cdot \exp \left\{\psi_{i} +
+\phi_{j, t} + 
+\beta \mathbf{Z}_{i j} + 
+\boldsymbol{\theta} \mathbf{X}_{i, \tau(t)} + 
+\mu \mathbf{C}_{i, \omega(t)}\right\} \cdot \varepsilon_{i j, t}$ &
+$m_{i j, t}$ are 5-year individual migration flows from $i$ to $j$,
+$\kappa$ is a constant; $\varepsilon_{i j, t}$ is an error term with 
+mean equal to 1; $\psi_{i}$ are origin fixed effects; $\phi_{j, t}$ are 
+time-destination fixed effects; $\mathbf{Z}_{i j}$ is a vector of
+bilateral variables, i.e. log of geographical distance between i and j and a contiguity dummy; 
+$\mathbf{X}_{i, \tau(t)}$ is a vector of lagged demographic and socio-economic origin controls.
+at year $\tau(t) = 1996, 2007$, and $\mathbf{C}_{i, \omega(t)}$ is a vector 
+of origin climatic variables computed over the 5-year time intervals $\omega(t) = [1996–2000], [2006–2010]$.
+&\\ 
+\citep{iqbal2007geo} &
+$
+\begin{aligned}
+ln(Refugee Flows)_{A \rightarrow B} =
+& \beta_{0} + \\
+& \beta_{1} \text {ln(Population)}_{A} + \\
+& \beta_{2} \text {ln(Population)}_{B} + \\
+& \beta_{3}\left(\text {Distance}_{A B}\right) + \\
+& \beta_{4}\left(\text {Conflict}_{A}\right) + \\
+& \beta_{5}\left(\text {Conflict}_{B}\right) + \\
+& \beta_{6}\left(\text {Confict}_{A} \times \text { Confict}_{B}\right) + \\
+& \beta_{7} \text {Democracy}_{A} + \\
+& \beta_{8}\left(\text {Democracy}_{B}\right) + \\
+& \beta_{9} \left( \text {Democracy}_{A} \times \text {Democracy}_{B}\right) + \\
+& u_{A B}
+\end{aligned} $
+& 
+&\\ 
+\multirow{8}{*}{\citep{garcia2015modeling}}&
+$ln(\widehat{migij}_{ij}) = ln(N_i) + ln(N_j) + ln(d_{ij})$
+&
+\multirow{8}{*}{$migij$ is the migration between units $i$ and $j$, $d_{ij}$ is the
+distance between them. $migij_{ij}$ is Poisson distributed with mean $\widehat{migij}_{ij}$.}
+&\\
+&
+$ln(\widehat{migij}_{ij}) = ln(N_i) + ln(N_j) + ln(d_{ij}) + CONTIG$
+&
+&\\
+&
+$ln(\widehat{migij}_{ij}) = ln(N_i) + ln(N_j) + ln(d_{ij}) + CONTIG +
+  URBANPOP_i + URBANPOP_j$
+&
+&\\
+&
+$ln(\widehat{migij}_{ij}) = ln(N_i) + ln(N_j) + ln(d_{ij}) + CONTIG +
+  URBANPOP_i + URBANPOP_j + ACTIVE_i + ACTIVE_j$
+&
+&\\
+&
+$ln(\widehat{migij}_{ij}) = ln(N_i) + ln(N_j) + ln(d_{ij}) + CONTIG +
+  URBANPOP_i + URBANPOP_j + ACTIVE_i + ACTIVE_j + MALEPROP_i + MALEPROP_J$
+&
+&\\
+&
+$ln(\widehat{migij}_{ij}) = ln(N_i) + ln(N_j) + ln(d_{ij}) + CONTIG +
+  URBANPOP_i + URBANPOP_j + ACTIVE_i + ACTIVE_j + MALEPROP_i +
+  MALEPROP_j + MEDIANAGE_i 
+$
+&
+&\\
+&
+$ln(\widehat{migij}_{ij}) = ln(N_i) + ln(N_j) + ln(d_{ij}) + CONTIG +
+  URBANPOP_i + URBANPOP_j + ACTIVE_i + ACTIVE_j + MALEPROP_i +
+  MALEPROP_j + MEDIANAGE_i + DROUGHT_i + DROUGHT_j
+$
+&
+&\\
+&
+$ln(\widehat{migij}_{ij}) = ln(N_i) + ln(N_j) + ln(d_{ij}) + CONTIG +
+  URBANPOP_i + URBANPOP_j + ACTIVE_i + ACTIVE_j + MALEPROP_i +
+  MALEPROP_j + MEDIANAGE_i + DROUGHT_i + DROUGHT_j + RAINVAR_i + RAINVAR_j
+$
+&
+&\\
+\citep{ruyssen2014determinants} &
+$
+\begin{aligned}
+M_{dot} = & \beta \left( \alpha_0 + \varphi_o + \alpha_5 \gamma_0 +
+  \alpha_6 \eta_0 \right) \\
+& + \beta \alpha_1 \ln \operatorname{inc_{dt}} - \beta \alpha_2 \ln
+  \operatorname{inc_{ot}} + 
+\beta \alpha_3 \ln \operatorname{empl_{dt}} - 
+\beta \alpha_4 \ln \operatorname{empl_{ot}} + 
+\beta \varphi_1 \ln \operatorname{MST_{dot - 1}} \\
+& - \beta \varphi_{2} \ln \operatorname{dist_{d o}} + 
+\beta \varphi_{3} \text {commbord}_{d o} + 
+\beta \varphi_{4} \ln \operatorname{commlang_{d o}} + 
+\beta \varphi_{5} \text {commcol }_{d o} + 
+\beta \varphi_{6} \text {regint}_{d o} \\
+& - \beta \alpha_{5} \gamma_{1} \ln \operatorname{educ_{d t}} + 
+\beta \alpha_{6} \eta_{1} \ln \operatorname{educ_{o t}} - 
+\beta \alpha_{5} \gamma_{2} \ln \operatorname{youngpop_{d t}} + 
+\beta \alpha_{6} \eta_{2} \ln \operatorname{youngpop_{o t}} \\
+& - \beta \alpha_{5} \gamma_{3} \ln \operatorname{confl_{d t}} + 
+\beta \alpha_{6} \eta_{3} \ln \operatorname{confl_{o t}} + 
+\beta \alpha_{5} \gamma_{4} \ln \operatorname{fr_{d t}} - 
+\beta \alpha_{6} \eta_{4} \ln \operatorname{fr_{o t}} \\
+& - \beta \alpha_{5} \gamma_{5} \ln \operatorname{disaster_{d t}} + 
+\beta \alpha_{6} \eta_{5} \ln \operatorname{disaster_{ot} } - 
+\beta \alpha_{5} \gamma_{6} \ln \operatorname{climate_{d t}} + 
+\beta \alpha_{6} \eta_{6} \ln \operatorname{climate_{o t}} + 
+\varepsilon_{d o t}
+\end{aligned}
+$
+&
+&\\
+\citep{wesolowski2014commentary} &
+%% Note that the text actually says the model is pop_i + pop_j.
+%% But we think the plus sign is a typo.
+$N_{ij} = k \left( pop_i^{\alpha} * pop_j{\beta}\right) / dist\left(i,
+                                   j\right)^{\gamma}$ &
+&\\
+
+\citep{sorichetta2016mapping} &
+$\frac{MIG_{ij}}{TOT_{i}} = \frac{e^{\beta_0 + \beta_1 P_i + \beta_2
+                                P_j - \beta_3 d_{ij}}}{1 + e^{\beta_0 + \beta_1 P_i + \beta_2
+                                P_j - \beta_3 d_{ij}}}$ &
+&$MIG_{ij}$ and $TOT_i$ represent the number of people residing in $j$
+  in the census year that were in $i$ $n$ years prior to the census
+  year\\
+
+\citep{choe2014internal} &
+$Pr\left(Y_{ij} = 1\right) = \begin{cases} 
+\frac{exp(\eta_{ij})}{1 + \sum\limits_{j = 1}^{318}{exp(\eta_{ij})}},
+& \text{ if } j \neq o \\
+\frac{1}{1 + \sum\limits_{j = 1}^{318}{exp(\eta_{ij})}},
+& \text{ if } j = o \\
+\end{cases}$, \newline
+where
+$\eta_{i j} = 
+\delta_{1} \cdot \widehat{\ln \left(w_{i j}\right)} + 
+\delta_{2} \cdot \widehat{u_{i j}} + 
+\boldsymbol{\delta}_{3} \cdot S H_{j} + 
+\boldsymbol{\delta}_{4} \cdot U R_{j} + 
+\boldsymbol{\delta}_{5} \cdot \ln \left(D_{j}\right) + 
+\boldsymbol{\delta}_{6} \cdot C R_{j}$
+&
+$Y_{ij}$ is 1 if individual $i$ from origin $o$ chooses to migrate
+  into region $j$, and 0 otherwise. $ln\left(\omega_{ij}\right)$ is
+  the log of the wage of individual i’s in area j; $SH_i$ is the share
+  of population with post-secondary education in area j; $UR_j$ is the
+  unemployment rate in area j; $ln\left( D_j\right)$ is the distance
+  between origin and area $j$; and $CR_j$ is the crime rate in area $j$.
+&\\
+\citep{huang2013open}&
+\begin{array}{c}{\log \left(P_{i j}\right)=\text
+  {Intercept}+\alpha^{\prime} N_{i}+\beta^{\prime}
+  N_{j}+\gamma^{\prime} R_{i j}+\rho^{\prime} \text {Interaction}_{i
+  j}+b_{d_{i j}}^{\prime} \text {City}_{i j}+e_{i j}} \\ {\qquad \log
+  \left(P_{i j}\right) \sim \text {Normal}}
+\end{array}
+&
+$N_i$ and $N_j$ denote the vector of node characteristics for the
+  origin airport $i$ and the destination airport $j$, $R_{ij}$ denotes
+  the vector of route characteristics; $\text {Interaction}_{ij}$ 
+  denotes the vector of the
+  two-way interactions between categorical variables such as stops,
+  country, degree link type, economic link type and haul type with
+  other node and route characteristics.
+&\\
+
+\citep{lu2013approaching} &
+$P(X_i^{t + 1} \mid X_i^t = x^t, X_i^{t - 1} = x^{t - 1}, \dots, X_i^1
+                            = x^1) = 
+P(X_i^{t + 1} \mid X_i^t = x^t, X_i^{t - 1} = x^{t - 1}, \dots, X_i^{b
+                            - n + 1}
+                            = x^{t - n + 1})$ &
+The trajectory of each individual is a Markov chain of order $n$, 
+which assumes that the future location is visited depending only on
+the previous $n$ visited locations. 
+&\\
+\citep{gustafson2017identifying} &
+$p_{i j}^{\mathrm{G}}=C_{i}^{\circlearrowleft} P_{i}^{\tau_{1}}
+           P_{j}^{\tau_{2}} / d_{i j}^{\rho}$ &
+$p _{ij}$ is the probability of a virus being transmitted from chiefdom i to chief-
+dom j, $P_i$ is the origin population, $p_j$ is the destination
+population, $C_i^G$ normalizes the probability
+distribution for each origin ($C_{i}^{G}=1 /\left(\sum_{j} P_{i}^{\tau_{1}} P_{j}^{\tau_{2}} / d_{i
+                                   j}^{\rho}\right)$ &
+)
+&\\
+
+\citep{gustafson2017identifying} &
+$p_{i j}^{L}=C_{i}^{L} / d_{i j}^{\rho}$ &
+&\\                                            
+
+\bottomrule
+\end{tabular}
+\end{table}
+\bibliography{mobility_models}
+\end{document}
